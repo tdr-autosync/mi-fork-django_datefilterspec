@@ -140,7 +140,7 @@ class DateRangeFilterTest(BaseTest):
         choices_mock.params = expected
         self.assertEqual(
             self.filter_.choices(choices_mock),
-            {"get_query": expected},
+            ({"get_query": expected}, )
         )
 
     def test_expected_params(self):
