@@ -12,7 +12,7 @@ from django import forms
 from django.contrib import admin
 from django.db import models
 from django.utils.translation import ugettext as _
-from django.contrib.admin.templatetags.admin_static import static
+from django.templatetags.static import static
 from django.conf import settings
 
 use_suit = 'DATE_RANGE_FILTER_USE_WIDGET_SUIT'

@@ -15,11 +15,11 @@ class CleanInputPrefixTest(BaseTest):
     @patch('daterange_filter.filter.FILTER_PREFIX', 'MY_CUSTOM_PREFIX___')
     def test_removes_prefix(self):
         input_ = {'MY_CUSTOM_PREFIX___some_field__gte': None}
-        self.assertEquals(clean_input_prefix(input_), {'some_field__gte': None})
+        self.assertEqual(clean_input_prefix(input_), {'some_field__gte': None})
 
     def test_doesnt_raise_error_if_dict_key_doesnt_start_with_prefix(self):
         input_ = {'some_field__gte': None}
-        self.assertEquals(clean_input_prefix(input_), {'some_field__gte': None})
+        self.assertEqual(clean_input_prefix(input_), {'some_field__gte': None})
 
 
 class DateRangeFilterBaseFormTest(BaseTest):
@@ -79,7 +79,7 @@ class DateRangeFormTest(BaseTest):
             js=['admin/js/calendar.js', 'admin/js/admin/DateTimeShortcuts.js'],
             css={'all': ['admin/css/widgets.css']}
         )))
-        self.assertEquals(str(form_2.media), '')
+        self.assertEqual(str(form_2.media), '')
 
 
 class DateTimeRangeFormTest(BaseTest):
@@ -120,7 +120,7 @@ class DateTimeRangeFormTest(BaseTest):
             js=['admin/js/calendar.js', 'admin/js/admin/DateTimeShortcuts.js'],
             css={'all': ['admin/css/widgets.css']}
         )))
-        self.assertEquals(str(form_2.media), '')
+        self.assertEqual(str(form_2.media), '')
 
 
 class DateRangeFilterTest(BaseTest):
@@ -135,7 +135,13 @@ class DateRangeFilterTest(BaseTest):
         self.assertEqual(self.filter_.form.request, self.request)
 
     def test_choices_is_empty(self):
-        self.assertEqual(self.filter_.choices(Mock()), [])
+        choices_mock = Mock()
+        expected = {"some": "param"}
+        choices_mock.params.return_value = expected
+        self.assertEqual(
+            self.filter_.choices(choices_mock),
+            {"get_query": expected},
+        )
 
     def test_expected_params(self):
         self.assertItemsEqual(self.filter_.expected_parameters(), ['drf__egg__lte', 'drf__egg__gte'])
