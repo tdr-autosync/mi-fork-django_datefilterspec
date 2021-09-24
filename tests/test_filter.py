@@ -110,9 +110,9 @@ class DateTimeRangeFormTest(BaseTest):
         form = self.DummyForm(Mock(), field_name='spam')
 
         self.assertIsInstance(
-            form.fields['drf__spam__gte'], forms.DateTimeField)
+            form.fields['drf__spam__gte'], forms.SplitDateTimeField)
         self.assertIsInstance(
-            form.fields['drf__spam__lte'], forms.DateTimeField)
+            form.fields['drf__spam__lte'], forms.SplitDateTimeField)
 
     def test_field_attributes(self):
         form = self.DummyForm(Mock(), field_name='ham')
@@ -306,9 +306,8 @@ class DateTimeRangeFilterTest(BaseTest):
         self.assertEqual(return_value, queryset.filter.return_value)
         self.assertItemsEqual([call()], queryset.filter.call_args_list)
 
-    @patch('daterange_filter.filter.DateTimeRangeForm.is_valid')
-    def test_queryset_filters_by_date_from(self, mock_is_valid):
-        mock_is_valid.return_value = True
+    # @patch('daterange_filter.filter.DateTimeRangeForm.is_valid')
+    def test_queryset_filters_by_date_from(self):
         queryset = Mock()
         params = {
             'drf__ham__gte_0': '2014-01-02',
