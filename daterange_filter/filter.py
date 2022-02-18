@@ -172,8 +172,6 @@ class DateRangeFilter(admin.filters.FieldListFilter):
                              field_name=self.field_path)
 
     def queryset(self, request, queryset):
-        print(self.form.is_valid())
-        print(self.form.errors)
         if self.form.is_valid():
             # get no null params
             filter_params = clean_input_prefix(dict(filter(lambda x: bool(x[1]), self.form.cleaned_data.items())))
