@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='django-daterange-filter',
-    version='1.4.0uh',
+    name='autosync-django-daterange-filter',
+    version='1.0.0',
     description='Allow to filter by a custom date range on the Django Admin',
     long_description=open('README.rst').read(-1),
     author='Tomas Zulberti',
@@ -25,10 +25,8 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Framework :: Django',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.4',
-        'Programming Language :: Python :: 2.5',
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.8',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Internet :: WWW/HTTP :: WSGI',
         'Topic :: Software Development :: Libraries :: Application Frameworks',
